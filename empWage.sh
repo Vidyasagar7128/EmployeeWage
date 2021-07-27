@@ -12,8 +12,8 @@ totalWorkingDays=0
 
 while (( ($totalEmpHrs<$MAXHRSINMONTH) && ($totalWorkingDays<$NUMBEROFWORKINGDAYS) ))
 do
-	totalWorkingDays=$(($totalWorkingDays+1))
-	check=$((RANDOM%2))
+        totalWorkingDays=$(($totalWorkingDays+1))
+        check=$((RANDOM%2))
         case $check in
         $PARTTIME)
         empHours=4
@@ -25,7 +25,30 @@ do
         empHours=0
         ;;
 esac
-	totalEmpHrs=$(($totalEmpHrs+$empHours))
+        totalEmpHrs=$(($totalEmpHrs+$empHours))
 done
-	totalSalary=$(($totalEmpHrs*$EMPRATEPERHOUR))
-echo " 100 Hrs & 20 Days Salary is :"$totalSalary
+        totalSalary=$(($totalEmpHrs*$EMPRATEPERHOUR))
+
+function empJob()
+{
+        case $1 in
+        $PARTTIME)
+        empHours=4
+        ;;
+        $FULLTIME)
+        empHours=8
+        ;;
+        *)
+        empHours=0
+        ;;
+esac
+
+}
+
+while (( ($totalEmpHrs<$MAXHRSINMONTH) && ($totalWorkingDays<$NUMBEROFWORKINGDAYS) ))
+do
+        totalWorkingDays=$(($totalWorkingDays+1))
+        empHours=$( empJob $((RANDOM%2)) )
+        totalEmpHrs=$(($totalEmpHrs+$empHours))
+done
+echo "Hours :" $totalEmpHrs
