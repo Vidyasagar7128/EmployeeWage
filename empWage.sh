@@ -4,9 +4,13 @@ FULLTIME=0
 PARTTIME=1
 FULLTIME=0
 EMPRATEPERHOUR=20
+NUMBEROFWORKINGDAYS=20
+totalSalary=0
 
-random=$((RANDOM%3))
-case $random in
+	for (( day=1; day<$NUMBEROFWORKINGDAYS; day++ ))
+do
+	ran=$((RANDOM%2))
+	case $ran in
         $PARTTIME)
         empHours=4
         ;;
@@ -17,6 +21,7 @@ case $random in
         empHours=0
         ;;
 esac
-
 	salary=$(($EMPRATEPERHOUR*$empHours))
-        echo "Using Case :" $salary
+	totalSalary=$(($totalSalary+$salary))
+done
+	echo "Monthly Salary :" $totalSalary
