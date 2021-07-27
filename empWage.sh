@@ -5,9 +5,9 @@ EMPRATEPERHOUR=20
 
 random=$((RANDOM%2))
 
-	if (( $random == 0 ))
+	if (( $random == 1 ))
 	then
-	empHours=8
+	empHours=4
 	fi
 	salary=$(($EMPRATEPERHOUR*$empHours))
         echo $salary
