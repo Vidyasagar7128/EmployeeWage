@@ -25,8 +25,8 @@ do
 esac
         salary=$(($EMPRATEPERHOUR*$empHours))
         totalSalary=$(($totalSalary+$salary))
-	dailyWage[(($day))]=$salary
+	declare -A dailyWageDay
+	dailyWageDay[$day]=$salary
 done
-        echo "Total Salary :" $totalSalary
-	dailyWage[((${#dailyWage[@]}+1))]=$totalSalary
-	echo "Daily Wage With Total : " ${dailyWage[@]}
+        dailyWageDay[((${#dailyWageDay[@]}+1))]=$totalSalary
+	echo "Daily Wage & Day With Total : " ${dailyWageDay[@]}
